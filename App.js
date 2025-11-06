@@ -17,9 +17,7 @@ export default function App() {
     const [correo, setCorreo] = useState('');
     const [contrasena, setContrasena] = useState('');
     const [error, setError] = useState('');
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [reportesbool, setReportesbool] = useState(false);
-    const [completadosbool, setCompletadosbool] = useState(false);
+    const [pantalla, setPantalla] = useState('login');
 
     const IniciarSesion = () => {
         setError('');
@@ -28,7 +26,7 @@ export default function App() {
             return;
         }
         if (nombre === 'admin' && correo === 'admin@ipn.mx' && contrasena === '1234') {
-            setLoggedIn(true);
+            setPantalla('menu');
         } else {
             setError('Usuario, correo o contraseña incorrectos.');
         }
@@ -38,29 +36,26 @@ export default function App() {
         setNombre('');
         setCorreo('');
         setContrasena('');
-        setLoggedIn(false);
-        setReportesbool(false);
-        setCompletadosbool(false);
+        setPantalla('login');
     };
 
-    const VerReportes = () => setReportesbool(true);
-    const VerCompletados = () => setCompletadosbool(true);
+    const volverMenu = () => setPantalla('menu');
 
     return (
-        <SafeAreaView style={styles1.safe}>
+        <SafeAreaView style={styles.safe}>
             <StatusBar style="light" />
-            {!loggedIn ? (
+            {pantalla === 'login' && (
                 <>
-                    <Image source={require('./img/ipn-logo.png')} style={[styles1.cornerImage, styles1.topLeft]} />
-                    <Image source={require('./img/rcu-logo.png')} style={[styles1.cornerImage, styles1.topRight]} />
+                    <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                    <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
 
-                    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles1.container}>
-                        <View style={styles1.card}>
-                            <Text style={styles1.title}>Iniciar sesión</Text>
+                    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.container}>
+                        <View style={styles.card}>
+                            <Text style={styles.title}>Iniciar sesión</Text>
 
-                            <Text style={styles1.label}>Nombre</Text>
+                            <Text style={styles.label}>Nombre</Text>
                             <TextInput
-                                style={styles1.input}
+                                style={styles.input}
                                 value={nombre}
                                 onChangeText={setNombre}
                                 placeholder="Ingrese su nombre"
@@ -68,9 +63,9 @@ export default function App() {
                                 autoCapitalize="words"
                             />
 
-                            <Text style={styles1.label}>Correo</Text>
+                            <Text style={styles.label}>Correo</Text>
                             <TextInput
-                                style={styles1.input}
+                                style={styles.input}
                                 value={correo}
                                 onChangeText={setCorreo}
                                 placeholder="ejemplo@dominio.com"
@@ -79,9 +74,9 @@ export default function App() {
                                 autoCapitalize="none"
                             />
 
-                            <Text style={styles1.label}>Contraseña</Text>
+                            <Text style={styles.label}>Contraseña</Text>
                             <TextInput
-                                style={styles1.input}
+                                style={styles.input}
                                 value={contrasena}
                                 onChangeText={setContrasena}
                                 placeholder="Ingrese su contraseña"
@@ -90,49 +85,150 @@ export default function App() {
                                 autoCapitalize="none"
                             />
 
-                            {error ? <Text style={styles1.error}>{error}</Text> : null}
+                            {error ? <Text style={styles.error}>{error}</Text> : null}
 
-                            <TouchableOpacity style={styles1.button} onPress={IniciarSesion}>
-                                <Text style={styles1.buttonText}>Iniciar sesión</Text>
+                            <TouchableOpacity style={styles.button} onPress={IniciarSesion}>
+                                <Text style={styles.buttonText}>Iniciar sesión</Text>
                             </TouchableOpacity>
                         </View>
                     </KeyboardAvoidingView>
                 </>
-            ) : !reportesbool && !completadosbool ? (
-                <View style={styles2.loggedInContainer}>
-                    <View style={styles2.superiorPanel}>
-                        <Image source={require('./img/ipn-logo.png')} style={[styles1.cornerImage, styles1.topLeft]} />
-                        <Image source={require('./img/rcu-logo.png')} style={[styles1.cornerImage, styles1.topRight]} />
+            )}
+
+            {pantalla === 'menu' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
                     </View>
 
-                    <Text style={styles2.welcomeText}>Bienvenido/a, {nombre}</Text>
+                    <Text style={styles.welcomeText}>Bienvenido/a, {nombre}</Text>
 
-                    <TouchableOpacity style={styles2.optionButton} onPress={VerReportes}>
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('reportes')}>
                         <Image source={require('./img/report.png')} />
-                        <Text style={styles2.optionText}>Ver reportes</Text>
+                        <Text style={styles.optionText}>Reportes pendientes</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles2.optionButton} onPress={VerCompletados}>
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('completados')}>
                         <Image source={require('./img/complete.png')} />
-                        <Text style={styles2.optionText}>Reportes completados</Text>
+                        <Text style={styles.optionText}>Reportes completados</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles2.button} onPress={CerrarSesion}>
-                        <Text style={styles1.buttonText}>Cerrar sesión</Text>
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('crud')}>
+                        <Image source={require('./img/alumnos.png')} />
+                        <Text style={styles.optionText}>Alumnos</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button} onPress={CerrarSesion}>
+                        <Text style={styles.buttonText}>Cerrar sesión</Text>
                     </TouchableOpacity>
                 </View>
-            ) : (
-                <View style={styles2.loggedInContainer}>
-                    <View style={styles2.superiorPanel}>
-                        <Image source={require('./img/ipn-logo.png')} style={[styles1.cornerImage, styles1.topLeft]} />
-                        <Image source={require('./img/rcu-logo.png')} style={[styles1.cornerImage, styles1.topRight]} />
-                    </View>
-                    <Text style={styles2.welcomeText}>
-                        {reportesbool ? 'Panel de reportes' : 'Reportes completados'}
-                    </Text>
+            )}
 
-                    <TouchableOpacity style={styles2.button} onPress={() => {setReportesbool(false); setCompletadosbool(false);}}>
-                        <Text style={styles1.buttonText}>Volver</Text>
+            {pantalla === 'reportes' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+
+                    <Text style={styles.welcomeText}>Reportes pendientes</Text>
+                    <View style={styles.tableContainer}>
+                        {/* Encabezado */}
+                        <View style={[styles.tableRow, styles.tableHeader]}>
+                            <Text style={[styles.tableText, styles.headerText]}>Reporte</Text>
+                            <Text style={[styles.tableText, styles.headerText]}>Fecha</Text>
+                            <Text style={[styles.tableText, styles.headerText]}>Estatus</Text>
+                        </View>
+
+                        {/* Filas */}
+                        <View style={styles.tableRow}>
+                            <Text style={styles.tableText}>Reporte 1</Text>
+                            <Text style={styles.tableText}>12/10/2025</Text>
+                            <View style={styles.statusCell}>
+                                <View style={[styles.statusDot, { backgroundColor: 'yellow' }]} />
+                            </View>
+                        </View>
+
+                        <View style={[styles.tableRow, styles.tableAlt]}>
+                            <Text style={styles.tableText}>Reporte 2</Text>
+                            <Text style={styles.tableText}>08/10/2025</Text>
+                            <View style={styles.statusCell}>
+                                <View style={[styles.statusDot, { backgroundColor: 'yellow' }]} />
+                            </View>
+                        </View>
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={volverMenu}>
+                        <Text style={styles.buttonText}>Volver</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+
+            {pantalla === 'completados' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+
+                    <Text style={styles.welcomeText}>Reportes completados</Text>
+
+                    <View style={styles.tableContainer}>
+                        {/* Encabezado */}
+                        <View style={[styles.tableRow, styles.tableHeader]}>
+                            <Text style={[styles.tableText, styles.headerText]}>Reporte</Text>
+                            <Text style={[styles.tableText, styles.headerText]}>Fecha</Text>
+                            <Text style={[styles.tableText, styles.headerText]}>Estatus</Text>
+                        </View>
+
+                        {/* Filas */}
+                        <View style={styles.tableRow}>
+                            <Text style={styles.tableText}>Reporte 3</Text>
+                            <Text style={styles.tableText}>05/10/2025</Text>
+                            <View style={styles.statusCell}>
+                                <View style={[styles.statusDot, { backgroundColor: 'limegreen' }]} />
+                            </View>
+                        </View>
+
+                        <View style={[styles.tableRow, styles.tableAlt]}>
+                            <Text style={styles.tableText}>Reporte 4</Text>
+                            <Text style={styles.tableText}>01/10/2025</Text>
+                            <View style={styles.statusCell}>
+                                <View style={[styles.statusDot, { backgroundColor: 'limegreen' }]} />
+                            </View>
+                        </View>
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={volverMenu}>
+                        <Text style={styles.buttonText}>Volver</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+
+            {pantalla === 'crud' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+                    <Text style={styles.welcomeText}>CRUD de alumnos</Text>
+
+                    <TouchableOpacity style={styles.optionButton}>
+                        <Image source={require('./img/ca.png')} />
+                        <Text style={styles.optionText}>Agregar alumno</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.optionButton}>
+                        <Image source={require('./img/da.png')} />
+                        <Text style={styles.optionText}>Eliminar alumno</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.optionButton}>
+                        <Image source={require('./img/ra.png')} />
+                        <Text style={styles.optionText}>Buscar alumno</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button} onPress={volverMenu}>
+                        <Text style={styles.buttonText}>Volver al menú</Text>
                     </TouchableOpacity>
                 </View>
             )}
@@ -140,7 +236,7 @@ export default function App() {
     );
 }
 
-const styles1 = StyleSheet.create({
+const styles = StyleSheet.create({
     safe: {
         flex: 1,
         backgroundColor: '#5A1236',
@@ -200,7 +296,8 @@ const styles1 = StyleSheet.create({
     button: {
         marginTop: 14,
         backgroundColor: '#5A1236',
-        paddingVertical: 12,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
         borderRadius: 10,
         alignItems: 'center',
     },
@@ -213,9 +310,6 @@ const styles1 = StyleSheet.create({
         color: '#b91c1c',
         marginTop: 8,
     },
-});
-
-const styles2 = StyleSheet.create({
     loggedInContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -236,19 +330,12 @@ const styles2 = StyleSheet.create({
         backgroundColor: '#5A1236',
         zIndex: 10,
     },
-    button: {
-        marginTop: 14,
-        backgroundColor: '#5A1236',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 10,
-        alignItems: 'center',
-    },
     welcomeText: {
-        fontSize: 30,
+        fontSize: 28,
         fontWeight: '600',
         marginBottom: 20,
         color: '#111',
+        marginTop: 40,
     },
     optionButton: {
         backgroundColor: '#D9D9D9',
@@ -260,7 +347,45 @@ const styles2 = StyleSheet.create({
     },
     optionText: {
         color: '#000000',
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: '700',
+    },
+    tableContainer: {
+        width: '90%',
+        marginTop: 20,
+        borderRadius: 10,
+        overflow: 'hidden',
+    },
+    tableRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        backgroundColor: '#d9d9d9',
+    },
+    tableAlt: {
+        backgroundColor: '#bfbfbf',
+    },
+    tableHeader: {
+        backgroundColor: '#5A1236',
+    },
+    tableText: {
+        color: 'black',
+        flex: 1,
+        textAlign: 'center',
+    },
+    headerText: {
+        color: 'white',
+        fontWeight: 'bold',
+    },
+    statusCell: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    statusDot: {
+        width: 12,
+        height: 12,
+        borderRadius: 6,
     },
 });
