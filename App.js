@@ -94,7 +94,6 @@ export default function App() {
                     </KeyboardAvoidingView>
                 </>
             )}
-
             {pantalla === 'menu' && (
                 <View style={styles.loggedInContainer}>
                     <View style={styles.superiorPanel}>
@@ -106,17 +105,17 @@ export default function App() {
 
                     <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('reportes')}>
                         <Image source={require('./img/report.png')} />
-                        <Text style={styles.optionText}>Reportes pendientes</Text>
+                        <Text style={styles.optionText}>Reportes</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('completados')}>
-                        <Image source={require('./img/complete.png')} />
-                        <Text style={styles.optionText}>Reportes completados</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('crud')}>
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('alumnos')}>
                         <Image source={require('./img/alumnos.png')} />
                         <Text style={styles.optionText}>Alumnos</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('tecnicos')}>
+                        <Image source={require('./img/personal.png')} />
+                        <Text style={styles.optionText}>Técnicos</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.button} onPress={CerrarSesion}>
@@ -124,8 +123,32 @@ export default function App() {
                     </TouchableOpacity>
                 </View>
             )}
-
+            {/*-------------------------- Pantallas de reportes --------------------------*/}
             {pantalla === 'reportes' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+
+                    <Text style={styles.welcomeText}>Gestión de reportes</Text>
+
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('pendientes')}>
+                        <Image source={require('./img/pending.png')} />
+                        <Text style={styles.optionText}>Reportes pendientes</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('completados')}>
+                        <Image source={require('./img/completed.png')} />
+                        <Text style={styles.optionText}>Reportes completados</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button} onPress={volverMenu}>
+                        <Text style={styles.buttonText}>Volver al menú</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+            {pantalla === 'pendientes' && (
                 <View style={styles.loggedInContainer}>
                     <View style={styles.superiorPanel}>
                         <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
@@ -159,12 +182,11 @@ export default function App() {
                         </View>
                     </View>
 
-                    <TouchableOpacity style={styles.button} onPress={volverMenu}>
+                    <TouchableOpacity style={styles.button} onPress={() => setPantalla('reportes')}>
                         <Text style={styles.buttonText}>Volver</Text>
                     </TouchableOpacity>
                 </View>
             )}
-
             {pantalla === 'completados' && (
                 <View style={styles.loggedInContainer}>
                     <View style={styles.superiorPanel}>
@@ -200,35 +222,243 @@ export default function App() {
                         </View>
                     </View>
 
-                    <TouchableOpacity style={styles.button} onPress={volverMenu}>
+                    <TouchableOpacity style={styles.button} onPress={() => setPantalla('reportes')}>
                         <Text style={styles.buttonText}>Volver</Text>
                     </TouchableOpacity>
                 </View>
             )}
-
-            {pantalla === 'crud' && (
+            {/*-------------------------- Pantallas de alumnos --------------------------*/}
+            {pantalla === 'alumnos' && (
                 <View style={styles.loggedInContainer}>
                     <View style={styles.superiorPanel}>
                         <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
                         <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
                     </View>
-                    <Text style={styles.welcomeText}>CRUD de alumnos</Text>
+                    <Text style={styles.welcomeText}>Alumnos</Text>
 
-                    <TouchableOpacity style={styles.optionButton}>
-                        <Image source={require('./img/ca.png')} />
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('CAlumno')}>
+                        <Image source={require('./img/create.png')} />
                         <Text style={styles.optionText}>Agregar alumno</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.optionButton}>
-                        <Image source={require('./img/da.png')} />
-                        <Text style={styles.optionText}>Eliminar alumno</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.optionButton}>
-                        <Image source={require('./img/ra.png')} />
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('RAlumno')}>
+                        <Image source={require('./img/read.png')} />
                         <Text style={styles.optionText}>Buscar alumno</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('UAlumno')}>
+                        <Image source={require('./img/update.png')} />
+                        <Text style={styles.optionText}>Editar alumno</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('DAlumno')}>
+                        <Image source={require('./img/delete.png')} />
+                        <Text style={styles.optionText}>Eliminar alumno</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.button} onPress={volverMenu}>
                         <Text style={styles.buttonText}>Volver al menú</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+            {pantalla === 'CAlumno' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+
+                    <Text style={styles.welcomeText}>Agregar alumno</Text>
+
+                    <View style={styles.formCard2}>
+                        <Text style={styles.label2}>Nombre del alumno</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" />
+
+                        <Text style={styles.label2}>Boleta del alumno</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="numeric" />
+
+                        <Text style={styles.label2}>Correo del alumno</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="email-address" />
+
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.buttonText}>Agregar alumno</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={() => setPantalla('alumnos')}>
+                        <Text style={styles.buttonText}>Volver</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+            {pantalla === 'RAlumno' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+
+                    <Text style={styles.welcomeText}>Buscar alumno</Text>
+
+                    <View style={styles.formCard2}>
+                        <Text style={styles.label2}>Boleta del alumno</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="numeric" />
+
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.buttonText}>Buscar alumno</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={() => setPantalla('alumnos')}>
+                        <Text style={styles.buttonText}>Volver</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+            {pantalla === 'UAlumno' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+
+                    <Text style={styles.welcomeText}>EDITAR ALUMNO</Text>
+
+                    <View style={styles.formCard2}>
+                        <Text style={styles.label2}>Boleta del alumno</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="numeric" />
+
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.buttonText}>Buscar alumno</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={() => setPantalla('alumnos')}>
+                        <Text style={styles.buttonText}>Volver</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+            {pantalla === 'DAlumno' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+
+                    <Text style={styles.welcomeText}>ELIMINAR ALUMNO</Text>
+
+                    <View style={styles.formCard2}>
+                        <Text style={styles.label2}>Boleta del alumno</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="numeric" />
+
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.buttonText}>Eliminar alumno</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={() => setPantalla('alumnos')}>
+                        <Text style={styles.buttonText}>Volver</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+            {/*-------------------------- Pantallas de técnicos --------------------------*/}
+            {pantalla === 'tecnicos' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+                    <Text style={styles.welcomeText}>Técnicos</Text>
+
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('CTecnico')}>
+                        <Image source={require('./img/create.png')} />
+                        <Text style={styles.optionText}>Agregar técnico</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.optionButton}>
+                        <Image source={require('./img/information.png')} />
+                        <Text style={styles.optionText}>Informe del técnico</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('UTecnico')}>
+                        <Image source={require('./img/update.png')} />
+                        <Text style={styles.optionText}>Editar técnico</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.optionButton} onPress={() => setPantalla('DTecnico')}>
+                        <Image source={require('./img/delete.png')} />
+                        <Text style={styles.optionText}>Eliminar técnico</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button} onPress={volverMenu}>
+                        <Text style={styles.buttonText}>Volver al menú</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+            {pantalla === 'CTecnico' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+
+                    <Text style={styles.welcomeText}>Agregar técnico</Text>
+
+                    <View style={styles.formCard2}>
+                        <Text style={styles.label2}>Nombre del técnico</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" />
+
+                        <Text style={styles.label2}>ID del técnico</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="numeric" />
+
+                        <Text style={styles.label2}>Correo del técnico</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="email-address" />
+
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.buttonText}>Agregar técnico</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={() => setPantalla('tecnicos')}>
+                        <Text style={styles.buttonText}>Volver</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+            {pantalla === 'UTecnico' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+
+                    <Text style={styles.welcomeText}>Editar técnico</Text>
+
+                    <View style={styles.formCard2}>
+                        <Text style={styles.label2}>ID del técnico</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="numeric" />
+
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.buttonText}>Buscar técnico</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={() => setPantalla('tecnicos')}>
+                        <Text style={styles.buttonText}>Volver</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+            {pantalla === 'DTecnico' && (
+                <View style={styles.loggedInContainer}>
+                    <View style={styles.superiorPanel}>
+                        <Image source={require('./img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+                        <Image source={require('./img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+                    </View>
+
+                    <Text style={styles.welcomeText}>Eliminar técnico</Text>
+
+                    <View style={styles.formCard2}>
+                        <Text style={styles.label2}>ID del técnico</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="numeric" />
+
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.buttonText}>Eliminar técnico</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={() => setPantalla('tecnicos')}>
+                        <Text style={styles.buttonText}>Volver</Text>
                     </TouchableOpacity>
                 </View>
             )}
@@ -387,5 +617,34 @@ const styles = StyleSheet.create({
         width: 12,
         height: 12,
         borderRadius: 6,
+    },
+    formCard2: {
+        width: '90%',
+        backgroundColor: '#F8F8F8',
+        borderRadius: 16,
+        paddingVertical: 25,
+        paddingHorizontal: 20,
+        borderWidth: 1,
+        borderColor: '#D9D9D9',
+        marginBottom: 20,
+    },
+
+    label2: {
+        fontSize: 14,
+        fontWeight: '700',
+        color: '#000',
+        marginBottom: 6,
+        marginTop: 10,
+    },
+
+    input2: {
+        backgroundColor: '#ffffff',
+        borderWidth: 1,
+        borderColor: '#D9D9D9',
+        borderRadius: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        fontSize: 15,
+        marginBottom: 15,
     },
 });
