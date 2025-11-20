@@ -65,7 +65,6 @@ export default function App() {
         setBoleta('');
         setAlNombre('');
         setAlCorreo('');
-        setAlContrasena('');
         setAlReportes([]);
     }
 
@@ -82,7 +81,6 @@ export default function App() {
             setBoleta('2024090213');
             setAlNombre('Estrada Sevillano, Rodrigo');
             setAlCorreo('restradas2301@alumno.ipn.mx');
-            setAlContrasena('rodrigo1');
             const alReportesTemp = [
                 { id: 1, descripcion: 'Falla en la computadora', estatus: 'Pendiente' },
                 { id: 2, descripcion: 'Problema con el software', estatus: 'Completado' },
@@ -337,6 +335,9 @@ export default function App() {
                         <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="numeric" />
 
                         <Text style={styles.label2}>Correo del alumno</Text>
+                        <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="email-address" />
+
+                        <Text style={styles.label2}>Contraseña del alumno</Text>
                         <TextInput style={styles.input2} placeholder="" placeholderTextColor="#999" keyboardType="email-address" />
 
                         <TouchableOpacity style={styles.button}>
