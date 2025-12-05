@@ -14,28 +14,24 @@ export default function Menu({ navigation, route }) {
             <View style={styles.loggedInContainer2}>
                 <Text style={styles.welcomeText}>Bienvenido/a, {nombre}</Text>
 
-                <TouchableOpacity
-                    style={styles.optionButton}
-                    onPress={() => navigation.navigate('reportes')}
-                >
-                    <Image source={require('../img/report.png')} />
+                <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('reportes')}>
+                    <Image source={require('../img/reportes.png')} />
                     <Text style={styles.optionText}>Reportes</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={styles.optionButton}
-                    onPress={() => navigation.navigate('alumnos')}
-                >
+                <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('alumnos')}>
                     <Image source={require('../img/alumnos.png')} />
                     <Text style={styles.optionText}>Alumnos</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={styles.optionButton}
-                    onPress={() => navigation.navigate('tecnicos')}
-                >
-                    <Image source={require('../img/personal.png')} />
+                <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('tecnicos')}>
+                    <Image source={require('../img/tecnicos.png')} />
                     <Text style={styles.optionText}>Técnicos</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('dispositivos')}>
+                    <Image source={require('../img/dispositivos.png')} />
+                    <Text style={styles.optionText}>Dispositivos</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button2} onPress={() => navigation.replace('login')}>

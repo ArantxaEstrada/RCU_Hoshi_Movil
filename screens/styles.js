@@ -115,7 +115,8 @@ export default StyleSheet.create({
     welcomeText: {
         fontSize: 28,
         fontWeight: '600',
-        marginBottom: 25,
+        marginTop: 10,
+        marginBottom: 0,
         color: '#111',
     },
     optionButton: {
@@ -124,7 +125,7 @@ export default StyleSheet.create({
         width: '60%',
         borderRadius: 10,
         alignItems: 'center',
-        marginVertical: 8,
+        marginVertical: 5,
     },
     optionText: {
         color: '#000000',

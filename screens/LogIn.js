@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { View, Text, TextInput, Image, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
+import { useState, useEffect } from 'react';
+import { View, Text, TextInput, Image, TouchableOpacity, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
 
@@ -8,6 +8,20 @@ export default function Login({ navigation }) {
     const [correo, setCorreo] = useState('');
     const [contrasena, setContrasena] = useState('');
     const [error, setError] = useState('');
+    const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+    useEffect(() => {
+        const showEvent = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+        const hideEvent = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
+
+        const showSub = Keyboard.addListener(showEvent, () => setKeyboardVisible(true));
+        const hideSub = Keyboard.addListener(hideEvent, () => setKeyboardVisible(false));
+
+        return () => {
+            showSub.remove();
+            hideSub.remove();
+        };
+    }, []);
 
     const IniciarSesion = () => {
         setError('');
@@ -25,10 +39,19 @@ export default function Login({ navigation }) {
 
     return (
         <SafeAreaView style={styles.safe}>
-            <Image source={require('../img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
-            <Image source={require('../img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+            {!keyboardVisible && (
+                <Image source={require('../img/ipn-logo.png')} style={[styles.cornerImage, styles.topLeft]} />
+            )}
+            {!keyboardVisible && (
+                <Image source={require('../img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
+            )}
 
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.container}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                keyboardVerticalOffset={80}  // <- Ajusta este número
+                style={styles.container}
+            >
+
 
                 <View style={styles.card}>
                     <Text style={styles.title}>Iniciar sesión</Text>
