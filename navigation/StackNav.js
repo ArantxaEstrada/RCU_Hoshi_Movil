@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //Principal
 import Login from '../screens/LogIn';
 import Menu from '../screens/Menu';
+import DAccess from '../screens/DAccess';
+import EAccess from '../screens/EAccess';
 //Reportes
 import Reportes from '../screens/Reportes/Reportes';
 import Pendientes from '../screens/Reportes/Pendientes';
@@ -31,6 +33,8 @@ export default function StackNavigator() {
             {/*Principal*/}
             <Stack.Screen name="login" component={withPreventBack(Login)} />
             <Stack.Screen name="menu" component={withPreventBack(Menu)} />
+            <Stack.Screen name="daccess" component={withPreventBack(DAccess)} />
+            <Stack.Screen name="eaccess" component={withPreventBack(EAccess)} />
             {/*Reportes*/}
             <Stack.Screen name="reportes" component={withPreventBack(Reportes)} />
             <Stack.Screen name="pendientes" component={withPreventBack(Pendientes)} />

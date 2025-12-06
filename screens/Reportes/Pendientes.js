@@ -2,7 +2,8 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from '../styles';
 
-export default function Pendientes({ navigation }) {
+export default function Pendientes({ navigation, route }) {
+    const { data } = route.params;
     return (
         <SafeAreaView style={styles.safe}>
             <View style={styles.superiorPanel}>
@@ -34,7 +35,7 @@ export default function Pendientes({ navigation }) {
                     </View>
                 </View>
 
-                <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('reportes')}>
+                <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('reportes', { data })}>
                     <Text style={styles.buttonText}>Volver</Text>
                 </TouchableOpacity>
             </View>

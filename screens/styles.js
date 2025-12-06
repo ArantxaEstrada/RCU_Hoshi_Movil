@@ -119,11 +119,20 @@ export default StyleSheet.create({
         marginBottom: 0,
         color: '#111',
     },
+    welcomeText2: {
+        position: 'absolute',
+        top: 150,
+        fontSize: 32,
+        fontWeight: '600',
+        marginTop: 10,
+        marginBottom: 0,
+        color: '#111',
+    },
     optionButton: {
         backgroundColor: '#D9D9D9',
         paddingVertical: 10,
         width: '60%',
-        borderRadius: 10,
+        borderRadius: 25,
         alignItems: 'center',
         marginVertical: 5,
     },
@@ -206,5 +215,16 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         flex: 1,
+    },
+    errorImage: {
+        width: 150,
+        height: 150,
+        marginVertical: 20,
+    },
+    infoText: {
+        fontSize: 18,
+        color: '#b91c1c',
+        marginTop: 8,
+        marginBottom: 6,
     },
 });
