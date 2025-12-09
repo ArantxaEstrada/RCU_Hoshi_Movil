@@ -1,3 +1,4 @@
+# Visual Studio Code
 .vscode/
 # dependencies
 node_modules/
@@ -31,9 +32,18 @@ yarn-error.*
 
 # local env files
 .env*.local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # typescript
 *.tsbuildinfo
+
+# Sensitive configuration files
+babel.config.js
+env.d.ts
 
 # generated native folders
 /ios
