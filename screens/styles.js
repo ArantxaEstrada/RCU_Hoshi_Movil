@@ -220,6 +220,8 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderColor: '#D9D9D9',
         marginBottom: 20,
+        marginTop: 5,
+        maxHeight: 550,
     },
     formCardScroll: {
         maxHeight: 500,

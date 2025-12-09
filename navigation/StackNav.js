@@ -19,7 +19,7 @@ import CAlumno from '../screens/Alumnos/CAlumno';
 import RAlumno from '../screens/Alumnos/RAlumno';
 import UAlumno from '../screens/Alumnos/UAlumno';
 import DAlumno from '../screens/Alumnos/DAlumno';
-//import AlumnoX from '../screens/AlumnoX';
+import AlumnoX from '../screens/Alumnos/AlumnoX';
 //Técnicos
 import Tecnicos from '../screens/Tecnicos/Tecnicos';
 import CTecnico from '../screens/Tecnicos/CTecnico';
@@ -49,6 +49,7 @@ export default function StackNavigator() {
             <Stack.Screen name="alumnos" component={withPreventBack(Alumno)} />
             <Stack.Screen name="calumno" component={withPreventBack(CAlumno)} />
             <Stack.Screen name="ralumno" component={withPreventBack(RAlumno)} />
+            <Stack.Screen name="alumnox" component={withPreventBack(AlumnoX)} />
             <Stack.Screen name="ualumno" component={withPreventBack(UAlumno)} />
             <Stack.Screen name="dalumno" component={withPreventBack(DAlumno)} />
             {/*Técnicos*/}

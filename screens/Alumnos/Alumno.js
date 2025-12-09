@@ -24,16 +24,6 @@ export default function Alumno({ navigation, route }) {
                             <Text style={styles.optionText}>Buscar alumno</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('ualumno', { data })}>
-                            <Image source={require('../../img/update.png')} />
-                            <Text style={styles.optionText}>Actualizar alumno</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('dalumno', { data })}>
-                            <Image source={require('../../img/delete.png')} />
-                            <Text style={styles.optionText}>Eliminar alumno</Text>
-                        </TouchableOpacity>
-
                         <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('menu', { data })}>
                             <Text style={styles.buttonText}>Volver al menú</Text>
                         </TouchableOpacity>
