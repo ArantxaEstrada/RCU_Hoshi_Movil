@@ -45,7 +45,6 @@ export default function Login({ navigation }) {
             setError(error.message);
             return;
         }
-        console.log(data);
         //Verificar datos
         if (data.usr_pass !== password.trim() || (data.usr_correo).toLowerCase() !== emailLower) {
             setError('Datos incorrectos');

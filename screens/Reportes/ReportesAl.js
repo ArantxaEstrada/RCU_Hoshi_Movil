@@ -4,16 +4,16 @@ import { useState, useEffect } from 'react';
 import styles from '../styles';
 import { supabase } from '../../lib/supabase';
 
-export default function Pendientes({ navigation, route }) {
+export default function ReportesAl({ navigation, route }) {
     const { data } = route.params;
     const [error, setError] = useState('');
-    const [reportesPendientes, setReportesPendientes] = useState([]);
+    const [reportes, setReportes] = useState([]);
     const [dispositivoList, setDispositivoList] = useState([]);
     const [inventarioList, setInventarioList] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (data && data.est_tipo != 2 && data.perf_tipo <= 2) {
+        if (data && data.est_tipo != 2) {
             getInformation();
         }
     }, []);
@@ -22,20 +22,19 @@ export default function Pendientes({ navigation, route }) {
     const getInformation = async () => {
         try {
             setLoading(true);
-            // Reportes pendientes
-            const { data: reportes, error } = await supabase
+            // Reportes del alumno
+            const { data: reportesData, error } = await supabase
                 .schema('RCU')
                 .from('reporte')
                 .select('*')
-                .eq('tec_id', data.id)
-                .eq('rep_estado', 1)
+                .eq('al_boleta', data.id)
                 .order('rep_fecha_lev', { ascending: false });
             if (error) {
                 setError(error.message);
                 setLoading(false);
                 return;
             }
-            setReportesPendientes(reportes || []);
+            setReportes(reportesData || []);
             // Dispositivos
             const { data: dispositivos, error: dispError } = await supabase
                 .schema('RCU')
@@ -83,15 +82,20 @@ export default function Pendientes({ navigation, route }) {
         return `${dia}/${mes}/${año} ${horas}:${minutos}`;
     }
 
+    function getStatusColor(estado) {
+        if (estado == 2) return 'limegreen'; // Completado
+        if (estado == 1) return 'yellow'; // Pendiente
+        return 'red'; // Sin asignar o desconocido
+    }
+
     if (data) {
-        if (data.est_tipo != 2 && data.perf_tipo <= 2) {
+        if (data.est_tipo != 2) {
             const dispositivoMap = {};
             dispositivoList.forEach(d => { dispositivoMap[d.id] = d; });
 
             const inventarioMap = {};
             inventarioList.forEach(inv => { inventarioMap[inv.id] = inv; });
 
-            const [rep_fecha_res, setRepFechaRes] = useState('');
             return (
                 <SafeAreaView style={styles.safe}>
                     <View style={styles.superiorPanel}>
@@ -101,7 +105,7 @@ export default function Pendientes({ navigation, route }) {
                     </View>
 
                     <View style={styles.loggedInContainer2}>
-                        <Text style={styles.welcomeText}>Reportes pendientes</Text>
+                        <Text style={styles.welcomeText}>Mis reportes</Text>
 
                         <View style={styles.tableWrapper}>
                             <View style={[styles.tableRow, styles.tableHeader]}>
@@ -120,8 +124,8 @@ export default function Pendientes({ navigation, route }) {
                                         <ActivityIndicator size="large" />
                                     </View>
                                 ) : (
-                                    reportesPendientes.length > 0 ? (
-                                        reportesPendientes.map((rep, index) => {
+                                    reportes.length > 0 ? (
+                                        reportes.map((rep, index) => {
                                             const dispositivo = dispositivoMap[rep.disp_id];
                                             const inventario = dispositivo ? inventarioMap[dispositivo.tipo_id] : null;
 
@@ -146,14 +150,14 @@ export default function Pendientes({ navigation, route }) {
                                                     </Text>
 
                                                     <View style={styles.statusCell}>
-                                                        <View style={[styles.statusDot, { backgroundColor: 'yellow' }]} />
+                                                        <View style={[styles.statusDot, { backgroundColor: getStatusColor(rep.rep_estado) }]} />
                                                     </View>
                                                 </TouchableOpacity>
                                             );
                                         })
                                     ) : (
                                         <View style={{ padding: 15 }}>
-                                            <Text style={styles.error}>No tiene reportes pendientes</Text>
+                                            <Text style={styles.error}>No tiene reportes registrados</Text>
                                         </View>
                                     )
                                 )}
@@ -164,7 +168,7 @@ export default function Pendientes({ navigation, route }) {
 
                         <TouchableOpacity
                             style={styles.button2}
-                            onPress={() => navigation.navigate('reportes', { data })}
+                            onPress={() => navigation.replace('menu', { data })}
                         >
                             <Text style={styles.buttonText}>Volver</Text>
                         </TouchableOpacity>
@@ -172,7 +176,7 @@ export default function Pendientes({ navigation, route }) {
                 </SafeAreaView>
             );
         } else {
-            navigation.replace('daccess', { data });
+            navigation.replace('eaccess');
         }
     } else {
         navigation.replace('eaccess');

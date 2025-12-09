@@ -5,10 +5,24 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: '#5A1236',
     },
+    confirmText: {
+        fontSize: 32,
+        fontWeight: 'bold',
+        color: '#5A1236',
+        textAlign: 'center',
+        marginBottom: 30,
+        marginTop: 40,
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
         padding: 20,
+    },
+    ScrollContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        padding: 5,
+        width: '100%',
     },
     cornerImage: {
         position: 'absolute',
@@ -56,6 +70,7 @@ export default StyleSheet.create({
         borderRadius: 10,
         fontSize: 15,
         color: '#111',
+        maxHeight: 60,
     },
     button: {
         marginTop: 14,
@@ -142,29 +157,46 @@ export default StyleSheet.create({
         fontWeight: '700',
     },
     tableContainer: {
-        width: '90%',
-        marginTop: 20,
-        borderRadius: 10,
-        overflow: 'hidden',
+        width: '100%',
     },
     tableRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 10,
+        paddingVertical: 12,
         paddingHorizontal: 15,
         backgroundColor: '#d9d9d9',
     },
     tableAlt: {
-        backgroundColor: '#bfbfbf',
+        backgroundColor: '#c8c8c8',
     },
     tableHeader: {
         backgroundColor: '#5A1236',
+        paddingVertical: 14,
     },
     tableText: {
         color: 'black',
         flex: 1,
         textAlign: 'center',
+    },
+    tableWrapper: {
+        width: '90%',
+        marginTop: 20,
+        borderRadius: 12,
+        backgroundColor: '#ffffff20',
+        overflow: 'hidden',
+        maxHeight: 380,
+        alignSelf: 'center',
+        borderWidth: 1,
+        borderColor: '#a1a1a1',
+    },
+
+    tableScroll: {
+        width: '100%',
+    },
+
+    tableContent: {
+        paddingBottom: 10,
     },
     headerText: {
         color: 'white',
@@ -181,7 +213,7 @@ export default StyleSheet.create({
     },
     formCard2: {
         width: '90%',
-        backgroundColor: '#F8F8F8',
+        backgroundColor: '#F5F5F5',
         borderRadius: 16,
         paddingVertical: 25,
         paddingHorizontal: 20,
@@ -189,7 +221,9 @@ export default StyleSheet.create({
         borderColor: '#D9D9D9',
         marginBottom: 20,
     },
-
+    formCardScroll: {
+        maxHeight: 500,
+    },
     label2: {
         fontSize: 14,
         fontWeight: '700',
@@ -197,7 +231,6 @@ export default StyleSheet.create({
         marginBottom: 6,
         marginTop: 10,
     },
-
     input2: {
         backgroundColor: '#ffffff',
         borderWidth: 1,

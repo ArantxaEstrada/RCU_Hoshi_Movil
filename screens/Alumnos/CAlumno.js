@@ -33,7 +33,7 @@ export default function CAlumno({ navigation, route }) {
                             </TouchableOpacity>
                         </View>
 
-                        <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('alumnos')}>
+                        <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('alumnos', { data })}>
                             <Text style={styles.buttonText}>Volver</Text>
                         </TouchableOpacity>
                     </View>

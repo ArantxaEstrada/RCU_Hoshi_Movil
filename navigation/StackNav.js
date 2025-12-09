@@ -7,9 +7,12 @@ import Menu from '../screens/Menu';
 import DAccess from '../screens/DAccess';
 import EAccess from '../screens/EAccess';
 //Reportes
+import CReporte from '../screens/Reportes/CReporte';
 import Reportes from '../screens/Reportes/Reportes';
 import Pendientes from '../screens/Reportes/Pendientes';
 import Completados from '../screens/Reportes/Completados';
+import ReportesAl from '../screens/Reportes/ReportesAl';
+import ReporteX from '../screens/Reportes/ReporteX';
 //Alumnos
 import Alumno from '../screens/Alumnos/Alumno';
 import CAlumno from '../screens/Alumnos/CAlumno';
@@ -39,6 +42,9 @@ export default function StackNavigator() {
             <Stack.Screen name="reportes" component={withPreventBack(Reportes)} />
             <Stack.Screen name="pendientes" component={withPreventBack(Pendientes)} />
             <Stack.Screen name="completados" component={withPreventBack(Completados)} />
+            <Stack.Screen name="reportesal" component={withPreventBack(ReportesAl)} />
+            <Stack.Screen name="reportex" component={withPreventBack(ReporteX)} />
+            <Stack.Screen name="creporte" component={withPreventBack(CReporte)} />
             {/*Alumnos*/}
             <Stack.Screen name="alumnos" component={withPreventBack(Alumno)} />
             <Stack.Screen name="calumno" component={withPreventBack(CAlumno)} />

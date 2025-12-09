@@ -5,7 +5,7 @@ import styles from './styles';
 export default function Menu({ navigation, route }) {
     const { data } = route?.params || {};
     if (data) {
-        const nombre = data.usr_nombre;
+        const nombre = (data.usr_nombre.split(' ')[0]) || 'Usuario';
         if (data.est_tipo != 2) {
             return (
                 <SafeAreaView style={styles.safe}>
@@ -57,14 +57,14 @@ export default function Menu({ navigation, route }) {
                         )}
 
                         {data.perf_tipo === 3 && (
-                            <TouchableOpacity style={styles.optionButton}>
+                            <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('creporte', { data })}>
                                 <Image source={require('../img/nreport.png')} />
                                 <Text style={styles.optionText}>Enviar reporte</Text>
                             </TouchableOpacity>
                         )}
 
                         {data.perf_tipo === 3 && (
-                            <TouchableOpacity style={styles.optionButton}>
+                            <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('reportesal', { data })}>
                                 <Image source={require('../img/reportes.png')} />
                                 <Text style={styles.optionText}>Consultar reportes</Text>
                             </TouchableOpacity>
