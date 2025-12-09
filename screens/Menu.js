@@ -6,7 +6,7 @@ export default function Menu({ navigation, route }) {
     const { data } = route?.params || {};
     if (data) {
         const nombre = (data.usr_nombre.split(' ')[0]) || 'Usuario';
-        if (data.est_tipo != 2) {
+        if (data.est_tipo !== 2) {
             return (
                 <SafeAreaView style={styles.safe}>
                     <View style={styles.superiorPanel}>

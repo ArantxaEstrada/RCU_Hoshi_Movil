@@ -1,3 +1,4 @@
+
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -32,6 +33,15 @@ export default StyleSheet.create({
         borderRadius: 12,
         top: 18,
         zIndex: 10,
+    },
+    dropdownList2: {
+        backgroundColor: '#f9f9f9',
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderRadius: 8,
+        marginTop: -5,
+        marginBottom: 15,
+        maxHeight: 400,
     },
     topLeft: {
         left: 10,
@@ -333,5 +343,21 @@ export default StyleSheet.create({
     informeReportListTextSelected: {
         color: '#fff',
         fontWeight: 'bold',
+    },
+    dropdownList: {
+        backgroundColor: '#f9f9f9',
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderRadius: 8,
+        marginTop: -5,
+        marginBottom: 15,
+        maxHeight: 200,
+        overflow: 'hidden',
+    },
+    dropdownItem: {
+        paddingVertical: 12,
+        paddingHorizontal: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#eee',
     },
 });

@@ -30,6 +30,11 @@ import DTecnico from '../screens/Tecnicos/DTecnico';
 import InformeTecnico from '../screens/Tecnicos/InformeTecnico';
 //Dispositivos
 import Dispositivos from '../screens/Dispositivos/Dispositivos';
+import CDispositivo from '../screens/Dispositivos/CDispositivo';
+import RDispositivo from '../screens/Dispositivos/RDispositivo';
+import DispositivoX from '../screens/Dispositivos/DispositivoX';
+import UDispositivo from '../screens/Dispositivos/UDispositivo';
+import InformeDispositivo from '../screens/Dispositivos/InformeDispositivo';
 
 const Stack = createNativeStackNavigator();
 
@@ -65,6 +70,11 @@ export default function StackNavigator() {
             <Stack.Screen name="informetecnico" component={withPreventBack(InformeTecnico)} />
             {/*Dispositivos*/}
             <Stack.Screen name="dispositivos" component={withPreventBack(Dispositivos)} />
+            <Stack.Screen name="cdispositivo" component={withPreventBack(CDispositivo)} />
+            <Stack.Screen name="rdispositivo" component={withPreventBack(RDispositivo)} />
+            <Stack.Screen name="dispositivox" component={withPreventBack(DispositivoX)} />
+            <Stack.Screen name="udispositivo" component={withPreventBack(UDispositivo)} />
+            <Stack.Screen name="informedispositivo" component={withPreventBack(InformeDispositivo)} />
         </Stack.Navigator>
     );
 }

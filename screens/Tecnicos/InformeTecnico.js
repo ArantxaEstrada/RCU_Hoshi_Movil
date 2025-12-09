@@ -50,8 +50,6 @@ export default function InformeTecnico({ navigation, route }) {
             }
 
             setTecnico(tecnicoData);
-            console.log('Técnico cargado:', tecnicoData);
-            console.log('ID para buscar reportes:', id);
 
             // Obtener reportes del técnico
             const { data: reportesData, error: reportesError } = await supabase
@@ -62,8 +60,6 @@ export default function InformeTecnico({ navigation, route }) {
                 .order('rep_fecha_res', { ascending: false });
 
             if (reportesError) {
-                console.log('Error en reportes:', reportesError);
-                console.log('ID utilizado:', id);
                 setError(reportesError.message || 'Error al obtener reportes.');
                 setLoading(false);
                 return;
