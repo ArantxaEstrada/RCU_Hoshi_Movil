@@ -43,7 +43,7 @@ export default function Menu({ navigation, route }) {
                         )}
 
                         {data.perf_tipo === 2 && (
-                            <TouchableOpacity style={styles.optionButton}>
+                            <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('informetecnico', { data })}>
                                 <Image source={require('../img/information.png')} />
                                 <Text style={styles.optionText}>Mi informe</Text>
                             </TouchableOpacity>

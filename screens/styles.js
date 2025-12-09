@@ -262,4 +262,76 @@ export default StyleSheet.create({
         marginTop: 8,
         marginBottom: 6,
     },
+    informeContainer: {
+        flex: 1,
+        paddingTop: 150,
+        backgroundColor: '#ffffff',
+    },
+    informeScrollView: {
+        flex: 1,
+        paddingBottom: 120,
+    },
+    informeCard: {
+        width: '90%',
+        backgroundColor: '#F5F5F5',
+        borderRadius: 16,
+        paddingVertical: 25,
+        paddingHorizontal: 20,
+        borderWidth: 1,
+        borderColor: '#D9D9D9',
+        marginBottom: 20,
+        marginTop: 5,
+        alignSelf: 'center',
+    },
+    informeSection: {
+        marginBottom: 20,
+    },
+    informeRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+    },
+    informeColumnItem: {
+        alignItems: 'center',
+    },
+    informeReporteCard: {
+        backgroundColor: '#f9f9f9',
+        padding: 10,
+        marginBottom: 10,
+        borderRadius: 5,
+    },
+    informeStatsBox: {
+        backgroundColor: '#f5f5f5',
+        padding: 15,
+        borderRadius: 10,
+        marginBottom: 15,
+    },
+    informeEmptyText: {
+        textAlign: 'center',
+        marginTop: 20,
+        color: '#999',
+    },
+    informeReportList: {
+        marginBottom: 15,
+        borderRadius: 8,
+        overflow: 'hidden',
+    },
+    informeReportListItem: {
+        backgroundColor: '#f0f0f0',
+        paddingVertical: 12,
+        paddingHorizontal: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ddd',
+    },
+    informeReportListItemSelected: {
+        backgroundColor: '#0066cc',
+    },
+    informeReportListText: {
+        fontSize: 14,
+        color: '#333',
+    },
+    informeReportListTextSelected: {
+        color: '#fff',
+        fontWeight: 'bold',
+    },
 });

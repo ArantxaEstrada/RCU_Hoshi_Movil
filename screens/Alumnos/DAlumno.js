@@ -48,15 +48,15 @@ export default function DAlumno({ navigation, route }) {
                 return;
             }
 
-            // Eliminar el alumno
-            const { error: deleteError } = await supabase
+            // Cambiar estado del alumno a Baja
+            const { error: updateError } = await supabase
                 .schema('RCU')
                 .from('usuarios')
-                .delete()
+                .update({ est_tipo: 2 })
                 .eq('id', alumno.id);
 
-            if (deleteError) {
-                setError(deleteError.message || 'No se pudo eliminar el alumno.');
+            if (updateError) {
+                setError(updateError.message || 'No se pudo eliminar el alumno.');
                 setLoading(false);
                 return;
             }

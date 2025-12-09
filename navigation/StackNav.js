@@ -23,8 +23,11 @@ import AlumnoX from '../screens/Alumnos/AlumnoX';
 //Técnicos
 import Tecnicos from '../screens/Tecnicos/Tecnicos';
 import CTecnico from '../screens/Tecnicos/CTecnico';
+import RTecnico from '../screens/Tecnicos/RTecnico';
+import TecnicoX from '../screens/Tecnicos/TecnicoX';
 import UTecnico from '../screens/Tecnicos/UTecnico';
 import DTecnico from '../screens/Tecnicos/DTecnico';
+import InformeTecnico from '../screens/Tecnicos/InformeTecnico';
 //Dispositivos
 import Dispositivos from '../screens/Dispositivos/Dispositivos';
 
@@ -55,8 +58,11 @@ export default function StackNavigator() {
             {/*Técnicos*/}
             <Stack.Screen name="tecnicos" component={withPreventBack(Tecnicos)} />
             <Stack.Screen name="ctecnico" component={withPreventBack(CTecnico)} />
+            <Stack.Screen name="rtecnico" component={withPreventBack(RTecnico)} />
+            <Stack.Screen name="tecnicox" component={withPreventBack(TecnicoX)} />
             <Stack.Screen name="utecnico" component={withPreventBack(UTecnico)} />
             <Stack.Screen name="dtecnico" component={withPreventBack(DTecnico)} />
+            <Stack.Screen name="informetecnico" component={withPreventBack(InformeTecnico)} />
             {/*Dispositivos*/}
             <Stack.Screen name="dispositivos" component={withPreventBack(Dispositivos)} />
         </Stack.Navigator>

@@ -14,25 +14,19 @@ export default function Tecnicos({ navigation, route }) {
                         <Image source={require('../../img/rcu-logo.png')} style={[styles.cornerImage, styles.topRight]} />
                     </View>
                     <View style={styles.loggedInContainer2}>
-
                         <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('ctecnico', { data })}>
                             <Image source={require('../../img/create.png')} />
                             <Text style={styles.optionText}>Registrar técnico</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.optionButton}>
+                        <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('rtecnico', { data })}>
+                            <Image source={require('../../img/read.png')} />
+                            <Text style={styles.optionText}>Buscar técnico</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('informetecnico', { data })}>
                             <Image source={require('../../img/information.png')} />
                             <Text style={styles.optionText}>Informe del técnico</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('utecnico', { data })}>
-                            <Image source={require('../../img/update.png')} />
-                            <Text style={styles.optionText}>Actualizar técnico</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.optionButton} onPress={() => navigation.navigate('dtecnico', { data })}>
-                            <Image source={require('../../img/delete.png')} />
-                            <Text style={styles.optionText}>Eliminar técnico</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('menu', { data })}>

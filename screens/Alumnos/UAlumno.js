@@ -25,7 +25,6 @@ export default function UAlumno({ navigation, route }) {
 
     const estadosDisponibles = [
         { id: 1, nombre: 'Activo' },
-        { id: 2, nombre: 'Baja' },
         { id: 4, nombre: 'Dictamen' }
     ];
 
