@@ -11,7 +11,7 @@ export default function RAlumno({ navigation, route }) {
     const [loading, setLoading] = useState(false);
     const [alumno, setAlumno] = useState(null);
 
-    const regexBoleta = /^[0-9]{1,20}$/;
+    const regexBoleta = /^[0-9]{10}$/;
 
     const buscarAlumno = async () => {
         try {
@@ -28,7 +28,7 @@ export default function RAlumno({ navigation, route }) {
             }
 
             if (!regexBoleta.test(boletaTrim)) {
-                setError('La boleta solo puede contener números.');
+                setError('La boleta debe contener exactamente 10 dígitos.');
                 setLoading(false);
                 return;
             }

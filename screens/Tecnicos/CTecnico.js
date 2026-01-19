@@ -17,7 +17,7 @@ export default function CTecnico({ navigation, route }) {
     const [confirm, setConfirm] = useState('');
 
     const regexNombre = /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/;
-    const regexId = /^[0-9]{1,20}$/;
+    const regexId = /^[0-9]{10}$/;
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const regexPasswordLength = /^.{8,25}$/;
     const regexPasswordHasLetter = /[A-Za-z]/;
@@ -58,7 +58,7 @@ export default function CTecnico({ navigation, route }) {
             }
 
             if (!regexId.test(idTrim)) {
-                setError('El ID solo puede contener números.');
+                setError('El ID debe contener exactamente 10 dígitos.');
                 setLoading(false);
                 return;
             }

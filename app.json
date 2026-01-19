@@ -20,10 +20,18 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.r0d13.RCU_Hoshi_Movil"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "85b53c3e-6976-4692-a7d9-4b3dddcc4d61"
+      },
+      "supabaseUrl": "https://fsahqwpkawiytathuawb.supabase.co",
+      "supabaseAnon": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzYWhxd3BrYXdpeXRhdGh1YXdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQyNTU1NjUsImV4cCI6MjA3OTgzMTU2NX0.yFaKPTsYERxiHpeLmw_LMcSNzBW35BCLmmB_k_pHtgg"
     }
   }
 }
