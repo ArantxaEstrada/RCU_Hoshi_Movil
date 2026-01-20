@@ -17,7 +17,7 @@ export default function CAlumno({ navigation, route }) {
     const [confirm, setConfirm] = useState('');
 
     const regexNombre = /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/;
-    const regexBoleta = /^[0-9]{1,20}$/;
+    const regexBoleta = /^[0-9]{10}$/;
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const regexPasswordLength = /^.{8,25}$/;
     const regexPasswordHasLetter = /[A-Za-z]/;
@@ -58,7 +58,7 @@ export default function CAlumno({ navigation, route }) {
             }
 
             if (!regexBoleta.test(boletaTrim)) {
-                setError('La boleta solo puede contener números.');
+                setError('La boleta debe contener exactamente 10 dígitos.');
                 setLoading(false);
                 return;
             }

@@ -10,7 +10,7 @@ export default function RTecnico({ navigation, route }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const regexId = /^[0-9]{1,20}$/;
+    const regexId = /^[0-9]{10}$/;
 
     const buscarTecnico = async () => {
         try {
@@ -24,7 +24,7 @@ export default function RTecnico({ navigation, route }) {
             }
 
             if (!regexId.test(idTrim)) {
-                setError('El ID solo puede contener números.');
+                setError('El ID debe contener exactamente 10 dígitos.');
                 setLoading(false);
                 return;
             }

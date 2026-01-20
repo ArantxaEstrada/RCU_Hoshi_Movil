@@ -142,8 +142,7 @@ export default function InformeTecnico({ navigation, route }) {
             if (mostrarInforme && tecnico) {
                 const totalReportes = reportes.length;
                 const reportesPendientes = reportes.filter(r => r.rep_estado === 1).length;
-                const reportesEnProceso = reportes.filter(r => r.rep_estado === 2).length;
-                const reportesCompletados = reportes.filter(r => r.rep_estado === 3).length;
+                const reportesCompletados = reportes.filter(r => r.rep_estado === 2).length;
 
                 return (
                     <SafeAreaView style={styles.safe}>
@@ -180,10 +179,6 @@ export default function InformeTecnico({ navigation, route }) {
                                             <View style={styles.informeColumnItem}>
                                                 <Text style={styles.label2}>Pendientes</Text>
                                                 <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#ff9800' }}>{reportesPendientes}</Text>
-                                            </View>
-                                            <View style={styles.informeColumnItem}>
-                                                <Text style={styles.label2}>En proceso</Text>
-                                                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2196f3' }}>{reportesEnProceso}</Text>
                                             </View>
                                             <View style={styles.informeColumnItem}>
                                                 <Text style={styles.label2}>Completados</Text>
