@@ -12,6 +12,28 @@ export default function ReporteX({ navigation, route }) {
     const [error, setError] = useState('');
     const [salon, setSalon] = useState(null);
 
+    // Función para obtener la hora actual de México (UTC-6)
+    const getMexicoTime = () => {
+        const formatter = new Intl.DateTimeFormat('es-MX', {
+            timeZone: 'America/Mexico_City',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+
+        const parts = formatter.formatToParts(new Date());
+        const obj = {};
+        parts.forEach(({ type, value }) => {
+            obj[type] = value;
+        });
+
+        return `${obj.year}-${obj.month}-${obj.day}T${obj.hour}:${obj.minute}:${obj.second}.000Z`;
+    };
+
     useEffect(() => {
         if (data && reporte && dispositivo && inventario) {
             // También cargar salón para perf_tipo 3 (alumnos)
@@ -90,7 +112,7 @@ export default function ReporteX({ navigation, route }) {
                                     })()}</Text>
 
                                     <Text style={styles.label}>Fecha y hora de resolución:</Text>
-                                    <Text style={styles.input}>{(() => {
+                                    <Text style={styles.input}>{reporte.rep_fecha_res ? (() => {
                                         const date = new Date(reporte.rep_fecha_res);
                                         const day = String(date.getDate()).padStart(2, '0');
                                         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -98,7 +120,7 @@ export default function ReporteX({ navigation, route }) {
                                         const hours = String(date.getHours()).padStart(2, '0');
                                         const minutes = String(date.getMinutes()).padStart(2, '0');
                                         return `${day}-${month}-${year} ${hours}:${minutes}`;
-                                    })()}</Text>
+                                    })() : 'Pendiente'}</Text>
 
                                     <Text style={styles.label}>Solución:</Text>
                                     <Text style={styles.input}>{reporte.rep_solucion || 'Desconocida'}</Text>
@@ -205,7 +227,7 @@ export default function ReporteX({ navigation, route }) {
 
                             const updateData = {
                                 rep_solucion: solucionTrim,
-                                rep_fecha_res: fechaResolucion.toISOString(),
+                                rep_fecha_res: getMexicoTime(),
                                 rep_estado: 2,
                             };
                             const { error: updateError } = await supabase
@@ -345,7 +367,7 @@ export default function ReporteX({ navigation, route }) {
                                 })()}</Text>
 
                                 <Text style={styles.label}>Fecha y hora de resolución:</Text>
-                                <Text style={styles.input}>{(() => {
+                                <Text style={styles.input}>{reporte.rep_fecha_res ? (() => {
                                     const date = new Date(reporte.rep_fecha_res);
                                     const day = String(date.getDate()).padStart(2, '0');
                                     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -353,7 +375,7 @@ export default function ReporteX({ navigation, route }) {
                                     const hours = String(date.getHours()).padStart(2, '0');
                                     const minutes = String(date.getMinutes()).padStart(2, '0');
                                     return `${day}-${month}-${year} ${hours}:${minutes}`;
-                                })()}</Text>
+                                })() : 'Pendiente'}</Text>
 
                                 <Text style={styles.label}>Solución:</Text>
                                 <Text style={styles.input}>{reporte.rep_solucion || 'Desconocida'}</Text>

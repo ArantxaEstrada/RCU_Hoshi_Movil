@@ -27,6 +27,28 @@ export default function CReporte({ navigation, route }) {
 
     const regexDesc = /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 .,;:#()\-_\/\n]+$/;
 
+    // Función para obtener la hora actual de México (UTC-6)
+    const getMexicoTime = () => {
+        const formatter = new Intl.DateTimeFormat('es-MX', {
+            timeZone: 'America/Mexico_City',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+
+        const parts = formatter.formatToParts(new Date());
+        const obj = {};
+        parts.forEach(({ type, value }) => {
+            obj[type] = value;
+        });
+
+        return `${obj.year}-${obj.month}-${obj.day}T${obj.hour}:${obj.minute}:${obj.second}.000Z`;
+    };
+
     useEffect(() => {
         const showEvent = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
         const hideEvent = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
@@ -226,12 +248,12 @@ export default function CReporte({ navigation, route }) {
             const insertData = {
                 id: newId,
                 rep_descripcion: descTrim,
-                rep_fecha_lev: new Date().toISOString(),
+                rep_fecha_lev: getMexicoTime(),
                 rep_fecha_res: null,
                 sal_id: selectedSalon,
                 al_boleta: data?.id,
                 disp_id: selectedDisp,
-                rep_fecha_asig_tec: tecId ? new Date().toISOString() : null,
+                rep_fecha_asig_tec: tecId ? getMexicoTime() : null,
                 tec_id: tecId,
                 rep_solucion: null,
                 rep_estado: tecId ? 1 : 0,
